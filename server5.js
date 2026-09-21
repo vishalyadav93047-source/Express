@@ -8,12 +8,12 @@ const dburl =  `mongodb+srv://VISHAL:VISHAL1@cluster0.qttpv8e.mongodb.net/Vishal
 mongoose.connect(dburl)
 .then(()=>{console.log("Database Connected");
 }).catch((err)=>{
-    console.log("Error",err);
+    console.log("Error",err); 
     
 })
 
 server.get('/', (req, res)=>{
-    res.send("Hello")
+    res.send("Hello") 
 })
 
 

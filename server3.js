@@ -50,10 +50,13 @@ const server = express();
 //        }
 // })
 
-server.get('/product', (req, res)=>{
 
-    res.send(`Category: ${req.query.category}`)
-})
+
+
+// server.get('/product', (req, res)=>{
+
+//     res.send(`Category: ${req.query.category}`)
+// })
 
 
 

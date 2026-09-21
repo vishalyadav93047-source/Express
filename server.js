@@ -2,21 +2,21 @@ const express = require('express')
 
 const server = express();
 
-server.get('/' , (req , res)=>{
-        res.send("server is running properly")
-})
+// server.get('/' , (req , res)=>{
+//         res.send("server is running properly")
+// })
 
-server.post('/' , (req , res)=>{
-        res.send("data posted")
-})
+// server.post('/' , (req , res)=>{
+//         res.send("data posted")
+// })
 
-server.put('/' , (req , res)=>{
-        res.send("data update")
-})
+// server.put('/' , (req , res)=>{
+//         res.send("data update")
+// })
 
-server.delete('/' , (req , res)=>{
-        res.send("data deleted")
-})
+// server.delete('/' , (req , res)=>{
+//         res.send("data deleted")
+// })
 
 
 
