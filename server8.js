@@ -58,7 +58,120 @@ app.get("/students", async (req, res) =>{
 });
 
 
-app.listen(8000 , ()=>{
-    console.log("server is frunning on port no 8000.");
-    
-})
+
+// ======================== READ ========================
+
+// Get All Students
+app.get("/students", async (req, res) => {
+    try {
+        const students = await Student.find();
+
+        res.json(students);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Get Single Student By ID
+app.get("/students/:id", async (req, res) => {
+    try {
+        const student = await Student.findById(req.params.id);
+
+        if (!student) {
+            return res.status(404).json({
+                message: "Student Not Found",
+            });
+        }
+
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+ 
+
+// PUT => Complete Update
+app.put("/students/:id", async (req, res) => {
+    try {
+        const student = await Student.findByIdAndUpdate(
+            req.params.id,
+            {
+                name: req.body.name,
+                course: req.body.course,
+                fee: req.body.fee,
+            },
+            { new: true }
+        );
+
+        if (!student) {
+            return res.status(404).json({
+                message: "Student Not Found",
+            });
+        }
+
+        res.json({
+            message: "Student Updated Successfully",
+            student,
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+// PATCH => Partial Update
+app.patch("/students/:id", async (req, res) => {
+    try {
+        const student = await Student.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
+
+        if (!student) {
+            return res.status(404).json({
+                message: "Student Not Found",
+            });
+        }
+
+        res.json({
+            message: "Student Patched Successfully",
+            student,
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+// ======================== DELETE ========================
+
+app.delete("/students/:id", async (req, res) => {
+    try {
+        const student = await Student.findByIdAndDelete(req.params.id);
+
+        if (!student) {
+            return res.status(404).json({
+                message: "Student Not Found",
+            });
+        }
+
+        res.json({
+            message: "Student Deleted Successfully",
+            student,
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+// ======================== SERVER START ========================
+
+app.listen(8000, () => {
+    console.log("Server Running on Port 8000");
+});
+
+ 
